@@ -11,17 +11,25 @@ namespace LFA_HT2
     internal class ht2
     {
         public void ReconocimientoDePlacas() {
-            string patron = @"^[P|C|O|M|A]\d{3}[A-Z]{3}$";
+            //abrir y leer archivo
+            Console.Write("Ingrese el path del archivo: ");
+            string filePath = Console.ReadLine();
+            string TestfilePath = "C:\\Users\\samer\\Documents\\GitHub\\LFA\\LFA_HT2\\Problema1.txt";
 
-            Console.WriteLine("Ingrese la placa");
-            var text = Console.ReadLine();
-            Match match = Regex.Match(text, patron);
-            if (match.Success)
+            string[] lines = File.ReadAllLines(TestfilePath);
+            Console.Clear();
+            foreach (string line in lines)
             {
-                Console.WriteLine("Placa Valida");
-            }
-            else {Console.WriteLine("Placa No Valida"); }
-            Console.ReadLine();
+                //logica de problema
+                string patron = @"^[P|C|O|M|A]\d{3}[A-Z]{3}$";
+                Match match = Regex.Match(line, patron);
+                if (match.Success)
+                {
+                    Console.WriteLine("La placa: " + line + " es valida.");
+                }
+                else { Console.WriteLine("La placa: " + line + " no es valida."); }
+            }            
+            Console.ReadKey();
         }
 
         public void ReconocimientoDeFechas()
@@ -41,5 +49,7 @@ namespace LFA_HT2
 
         public void ReconocimientoDeSets() { 
         }
+
+
     }
 }
